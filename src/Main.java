@@ -34,8 +34,6 @@ public class Main {
             System.out.println("Hangman");
             System.out.println("vytvoril Michal Volf");
 
-            System.out.println(secretWord);
-            System.out.println(guessedWord);
             // guess, until you guess the word
             // or you use all attempts
             do {
@@ -63,13 +61,13 @@ public class Main {
                     badGuesses++;
                     attemptNo++;
                 }
-                System.out.println(guessedWord);
             } while (guessedWord.contains("-") && badGuesses <= MAX_INCORRECT_GUESSES);
             //game over
             System.out.println("Konec hry:");
             System.out.println("Zaverecna zprava:");
             drawHangman(badGuesses);
             printAttempt(attemptNo);
+            printSecretWord(secretWord);
             printGuessedWord(guessedWord);
             printBadLetters(badLetters);
             if (guessedWord.contains("-")) {
@@ -80,9 +78,8 @@ public class Main {
             }
             // Do you wish new game (ano / ne)
             newGame = anotherGame();
-            System.out.println(newGame);
         } while (newGame);
-        System.out.println("Konec hry");
+        System.out.println("Konec programu");
     }
 
     public static Boolean anotherGame() {
@@ -105,10 +102,8 @@ public class Main {
 
         }
         if (yesNo.equals("ano")) {
-            System.out.println("Pravda");
             return true;
         } else {
-            System.out.println("NePravda");
             return false;
         }
     }
@@ -127,16 +122,12 @@ public class Main {
                 } else if (!Character.isLetter(inputChar.charAt(0))) {
                     throw new Exception("Znak musi byt A-Z!");
                 }
-                System.out.println("breaknu ");
                 break;
             } catch (Exception e) {
                 System.out.println("Invalid input!" + e.getMessage());
             }
 
-            System.out.println("opakuju: ");
         }
-
-        System.out.println("return");
         return Character.toUpperCase(inputChar.charAt(0));
 
     }
@@ -290,6 +281,11 @@ public class Main {
         System.out.println("Ma celkem: " + guessedWord.length() + " znaku.");
         System.out.println("Uhadl jsi: " + hit + " znaku.");
         System.out.println("Zbyva uhadnout: " + rest + " znaku.");
+        return 1;
+    }
+
+    public static Integer printSecretWord(String secretWord) {
+        System.out.println("Skryte slovo: " + secretWord);
         return 1;
     }
 }
