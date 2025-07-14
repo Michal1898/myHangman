@@ -64,6 +64,19 @@ public class Main {
                 }
                 System.out.println(guessedWord);
             } while (guessedWord.contains("-") && badGuesses <= MAX_INCORRECT_GUESSES);
+            //game over
+            System.out.println("Konec hry:");
+            System.out.println("Zaverecna zprava:");
+            drawHangman(badGuesses);
+            printAttempt(attemptNo);
+            printGuessedWord(guessedWord);
+            printBadLetters(badLetters);
+            if (guessedWord.contains("-")) {
+
+                System.out.println("Prohral jsi. Ha ha ha !!");
+            }else{
+                System.out.println("Vyhral jsi. Gratuluji !!");
+            }
             // Do you wish new game (ano / ne)
             newGame = anotherGame();
             System.out.println(newGame);
@@ -162,17 +175,18 @@ public class Main {
                 break;
             case 2:
                 System.out.println("   _______   ");
-                System.out.println("   |     |   ");
+                System.out.println("   |         ");
                 System.out.println("   |         ");
                 System.out.println("   |         ");
                 System.out.println("   |        ");
                 System.out.println("   /\\        ");
                 System.out.println("-------------");
                 break;
+
             case 3:
                 System.out.println("   _______   ");
                 System.out.println("   |     |   ");
-                System.out.println("   |     O   ");
+                System.out.println("   |         ");
                 System.out.println("   |         ");
                 System.out.println("   |        ");
                 System.out.println("   /\\        ");
@@ -181,7 +195,7 @@ public class Main {
             case 4:
                 System.out.println("   _______   ");
                 System.out.println("   |     |   ");
-                System.out.println("   |     O/   ");
+                System.out.println("   |     O   ");
                 System.out.println("   |         ");
                 System.out.println("   |        ");
                 System.out.println("   /\\        ");
@@ -189,8 +203,8 @@ public class Main {
                 break;
             case 5:
                 System.out.println("   _______   ");
-                System.out.println("   |    |   ");
-                System.out.println("   |   \\O/   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |     O/   ");
                 System.out.println("   |         ");
                 System.out.println("   |        ");
                 System.out.println("   /\\        ");
@@ -198,9 +212,9 @@ public class Main {
                 break;
             case 6:
                 System.out.println("   _______   ");
-                System.out.println("   |     |   ");
-                System.out.println("   |    \\O/   ");
-                System.out.println("   |     |   ");
+                System.out.println("   |    |   ");
+                System.out.println("   |   \\O/   ");
+                System.out.println("   |         ");
                 System.out.println("   |        ");
                 System.out.println("   /\\        ");
                 System.out.println("-------------");
@@ -210,12 +224,21 @@ public class Main {
                 System.out.println("   |     |   ");
                 System.out.println("   |    \\O/   ");
                 System.out.println("   |     |   ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 8:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |    \\O/   ");
+                System.out.println("   |     |   ");
                 System.out.println("   |      \\  ");
                 System.out.println("   /\\        ");
                 System.out.println("-------------");
                 break;
 
-            case 8:
+            default:
                 System.out.println("   _______   ");
                 System.out.println("   |     |   ");
                 System.out.println("   |    \\O/   ");
