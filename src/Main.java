@@ -43,6 +43,7 @@ public class Main {
                 printAttempt(attemptNo);
                 printGuessedWord(guessedWord);
                 printBadLetters(badLetters);
+                printMistakes(badGuesses, MAX_INCORRECT_GUESSES);
 
                 Character guessedLetter = inputLetter();
                 if (secretWord.contains(guessedLetter.toString())) {
@@ -74,7 +75,7 @@ public class Main {
             if (guessedWord.contains("-")) {
 
                 System.out.println("Prohral jsi. Ha ha ha !!");
-            }else{
+            } else {
                 System.out.println("Vyhral jsi. Gratuluji !!");
             }
             // Do you wish new game (ano / ne)
@@ -252,6 +253,12 @@ public class Main {
         return Mistakes;
     }
 
+    public static Integer printMistakes(int mistakes, int maxMistakes) {
+        System.out.println("Chybnych pokusu: " + mistakes);
+        System.out.println("Muzes se splest uz jen " + (maxMistakes - mistakes) + " krat.");
+        return 1;
+    }
+
     public static Integer printAttempt(Integer attemptNo) {
         if (attemptNo > 0) {
             System.out.println("Pokus cislo: " + (attemptNo));
@@ -271,13 +278,12 @@ public class Main {
     public static Integer printGuessedWord(String guessedWord) {
         Integer hit = 0;
         Integer rest = 0;
-        for (int c=0;c<guessedWord.length();c++) {
+        for (int c = 0; c < guessedWord.length(); c++) {
             if (guessedWord.charAt(c) == '-') {
 
-               rest++;
-            }
-            else{
-                    hit++;
+                rest++;
+            } else {
+                hit++;
             }
         }
         System.out.println("Hadane slovo: " + guessedWord);
