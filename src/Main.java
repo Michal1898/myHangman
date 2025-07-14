@@ -13,7 +13,7 @@ public class Main {
                 "paradies", "hell", "devil", "angel", "holiday", "hardware", "office"};
         boolean newGame = false;
         Integer attemptNo;
-        final int MAX_INCORRECT_GUESSES = 6;
+        final int MAX_INCORRECT_GUESSES = 8;
         String guessedWord = "";
         String secretWord = "";
         Random random = new Random();
@@ -63,7 +63,7 @@ public class Main {
                     attemptNo++;
                 }
                 System.out.println(guessedWord);
-            } while (guessedWord.contains("-") && badGuesses < MAX_INCORRECT_GUESSES);
+            } while (guessedWord.contains("-") && badGuesses <= MAX_INCORRECT_GUESSES);
             // Do you wish new game (ano / ne)
             newGame = anotherGame();
             System.out.println(newGame);
@@ -140,9 +140,92 @@ public class Main {
     }
 
     public static Integer drawHangman(Integer Mistakes) {
-        // comppleted later
         System.out.println("HangMan");
-        System.out.println(Mistakes);
+        switch (Mistakes) {
+            case 0:
+                System.out.println("            ");
+                System.out.println("            ");
+                System.out.println("            ");
+                System.out.println("            ");
+                System.out.println("            ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 1:
+                System.out.println("            ");
+                System.out.println("   |         ");
+                System.out.println("   |         ");
+                System.out.println("   |         ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 2:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |         ");
+                System.out.println("   |         ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 3:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |     O   ");
+                System.out.println("   |         ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 4:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |     O/   ");
+                System.out.println("   |         ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 5:
+                System.out.println("   _______   ");
+                System.out.println("   |    |   ");
+                System.out.println("   |   \\O/   ");
+                System.out.println("   |         ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 6:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |    \\O/   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |        ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+            case 7:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |    \\O/   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |      \\  ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+
+            case 8:
+                System.out.println("   _______   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |    \\O/   ");
+                System.out.println("   |     |   ");
+                System.out.println("   |    / \\  ");
+                System.out.println("   /\\        ");
+                System.out.println("-------------");
+                break;
+        }
+        System.out.println("HangMan");
         return Mistakes;
     }
 
