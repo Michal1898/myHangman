@@ -6,6 +6,16 @@ import java.util.*;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     private static String string;
 
     public static void main(String[] args) {
@@ -31,8 +41,8 @@ public class Main {
             Integer badGuesses = 0;
             attemptNo = 0;
 
-            System.out.println("Hangman");
-            System.out.println("vytvoril Michal Volf");
+            System.out.println(ANSI_BLUE + "Hangman" + ANSI_RESET);
+            System.out.println(ANSI_BLUE + "vytvoril Michal Volf" + ANSI_RESET);
 
             // guess, until you guess the word
             // or you use all attempts
@@ -46,25 +56,25 @@ public class Main {
                 Character guessedLetter = inputLetter();
                 if (secretWord.contains(guessedLetter.toString())) {
                     if (guessedWord.contains(guessedLetter.toString())) {
-                        System.out.println("Tohle pismeno uz hadane slovo obsahuje!");
+                        System.out.println(ANSI_RED + "Tohle pismeno uz hadane slovo obsahuje!" + ANSI_RESET);
                     } else {
-                        System.out.println("Bravo! Uhadl jsi");
+                        System.out.println(ANSI_GREEN + "Bravo! Uhadl jsi" + ANSI_RESET);
                         guessedWord = updateGuessedWord(guessedWord, secretWord, guessedLetter);
                         attemptNo++;
                     }
                     guessedWord = updateGuessedWord(guessedWord, secretWord, guessedLetter);
                 } else if (badLetters.contains(guessedLetter)) {
-                    System.out.println("Tohle pismeno jsi uz zkousel!");
+                    System.out.println(ANSI_RED + "Tohle pismeno jsi uz zkousel!" + ANSI_RESET);
                 } else {
-                    System.out.println("Netrefil jsi se!");
+                    System.out.println(ANSI_RED + "Netrefil jsi se!" + ANSI_RED);
                     badLetters.add(guessedLetter);
                     badGuesses++;
                     attemptNo++;
                 }
             } while (guessedWord.contains("-") && badGuesses <= MAX_INCORRECT_GUESSES);
             //game over
-            System.out.println("Konec hry:");
-            System.out.println("Zaverecna zprava:");
+            System.out.println(ANSI_RED + "Konec hry:" + ANSI_RESET);
+            System.out.println(ANSI_PURPLE + "Zaverecna zprava:" + ANSI_RESET);
             drawHangman(badGuesses);
             printAttempt(attemptNo);
             printSecretWord(secretWord);
@@ -72,14 +82,14 @@ public class Main {
             printBadLetters(badLetters);
             if (guessedWord.contains("-")) {
 
-                System.out.println("Prohral jsi. Ha ha ha !!");
+                System.out.println(ANSI_RED + "Prohral jsi. Ha ha ha !!" + ANSI_RESET);
             } else {
-                System.out.println("Vyhral jsi. Gratuluji !!");
+                System.out.println(ANSI_BLUE + "Vyhral jsi. Gratuluji !!" + ANSI_RESET);
             }
             // Do you wish new game (ano / ne)
             newGame = anotherGame();
         } while (newGame);
-        System.out.println("Konec programu");
+        System.out.println(ANSI_RED + "Konec programu" + ANSI_RESET);
     }
 
     public static Boolean anotherGame() {
@@ -92,7 +102,7 @@ public class Main {
                 if ((yesNo.equals("ano")) || (yesNo.equals("ne"))) {
                     break;
                 } else {
-                    System.out.println("Odpovez ano, nebo ne!");
+                    System.out.println(ANSI_RED + "Odpovez ano, nebo ne!" + ANSI_RESET);
                     again.nextLine();
                 }
             } catch (Exception e) {
@@ -118,13 +128,13 @@ public class Main {
                 System.out.println("Zadej znak ve slove: ");
                 inputChar = quessChar.nextLine();
                 if (inputChar.length() != 1) {
-                    throw new Exception("Zadej prave 1 znak!");
+                    throw new Exception(ANSI_RED + "Zadej prave 1 znak!" + ANSI_RESET);
                 } else if (!Character.isLetter(inputChar.charAt(0))) {
-                    throw new Exception("Znak musi byt A-Z!");
+                    throw new Exception(ANSI_RED + "Znak musi byt A-Z!" + ANSI_RESET);
                 }
                 break;
             } catch (Exception e) {
-                System.out.println("Invalid input!" + e.getMessage());
+                System.out.println(ANSI_RED + "Invalid input!" + e.getMessage() + ANSI_RESET);
             }
 
         }
@@ -145,7 +155,16 @@ public class Main {
     }
 
     public static Integer drawHangman(Integer Mistakes) {
-        System.out.println("HangMan");
+        String hangmanColor;
+        if (Mistakes < 3) {
+            hangmanColor = ANSI_GREEN;
+        } else if (Mistakes < 6) {
+            hangmanColor = ANSI_YELLOW;
+        } else {
+            hangmanColor = ANSI_RED;
+        }
+
+        System.out.println(hangmanColor + "HangMan");
         switch (Mistakes) {
             case 0:
                 System.out.println("            ");
@@ -240,7 +259,7 @@ public class Main {
                 System.out.println("-------------");
                 break;
         }
-        System.out.println("HangMan");
+        System.out.println("HangMan" + ANSI_RESET);
         return Mistakes;
     }
 
@@ -261,7 +280,7 @@ public class Main {
 
     public static Integer printBadLetters(LinkedList<Character> poorLetters) {
         System.out.print("Slovo neobsahuje: ");
-        System.out.print(poorLetters);
+        System.out.print(ANSI_RED + poorLetters + ANSI_RESET);
         System.out.print("\n");
         return 1;
     }
@@ -277,7 +296,7 @@ public class Main {
                 hit++;
             }
         }
-        System.out.println("Hadane slovo: " + guessedWord);
+        System.out.println(ANSI_YELLOW + "Hadane slovo: " + guessedWord + ANSI_RESET);
         System.out.println("Ma celkem: " + guessedWord.length() + " znaku.");
         System.out.println("Uhadl jsi: " + hit + " znaku.");
         System.out.println("Zbyva uhadnout: " + rest + " znaku.");
