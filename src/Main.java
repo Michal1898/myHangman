@@ -22,7 +22,6 @@ public class Main {
         final String Words[] = {"skillmea", "Java", "Python", "Stress", "skull", "Anaconda",
                 "paradies", "hell", "devil", "angel", "holiday", "hardware", "office"};
         boolean newGame = false;
-        Integer attemptNo;
         final int MAX_INCORRECT_GUESSES = 8;
         String guessedWord = "";
         String secretWord = "";
@@ -39,7 +38,6 @@ public class Main {
                 guessedWord += "-";
             }
             Integer badGuesses = 0;
-            attemptNo = 0;
 
             System.out.println(ANSI_BLUE + "Hangman" + ANSI_RESET);
             System.out.println(ANSI_BLUE + "vytvoril Michal Volf" + ANSI_RESET);
@@ -48,7 +46,6 @@ public class Main {
             // or you use all attempts
             do {
                 drawHangman(badGuesses);
-                printAttempt(attemptNo);
                 printGuessedWord(guessedWord);
                 printBadLetters(badLetters);
                 printMistakes(badGuesses, MAX_INCORRECT_GUESSES);
@@ -60,7 +57,6 @@ public class Main {
                     } else {
                         System.out.println(ANSI_GREEN + "Bravo! Uhadl jsi" + ANSI_RESET);
                         guessedWord = updateGuessedWord(guessedWord, secretWord, guessedLetter);
-                        attemptNo++;
                     }
                     guessedWord = updateGuessedWord(guessedWord, secretWord, guessedLetter);
                 } else if (badLetters.contains(guessedLetter)) {
@@ -69,14 +65,12 @@ public class Main {
                     System.out.println(ANSI_RED + "Netrefil jsi se!" + ANSI_RED);
                     badLetters.add(guessedLetter);
                     badGuesses++;
-                    attemptNo++;
                 }
             } while (guessedWord.contains("-") && badGuesses <= MAX_INCORRECT_GUESSES);
             //game over
             System.out.println(ANSI_RED + "Konec hry:" + ANSI_RESET);
             System.out.println(ANSI_PURPLE + "Zaverecna zprava:" + ANSI_RESET);
             drawHangman(badGuesses);
-            printAttempt(attemptNo);
             printSecretWord(secretWord);
             printGuessedWord(guessedWord);
             printBadLetters(badLetters);
